@@ -1,178 +1,258 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>любимой марточке</title>
+<title>марточке)))</title>
 <style>
-@keyframes gradientBackground {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 body {
+    background-color: black;
+    color: white;
     font-family: sans-serif;
     text-align: center;
-    padding-top: 50px;
-    animation: gradientBackground 60s infinite;
-    background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
-    background-size: 1600% 1600%;
-    color: white;
-    margin: 0;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
-    position: relative;
 }
 
-h1, button {
-    background-color: black;
-    position: relative;
-    z-index: 2;
+#warning {
+    font-size: 1.5em;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 2;
+#textContainer {
+    font-size: 1.2em;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: #3e8e41;
+#textContainer p {
+    margin-bottom: 20px;
+    display: none;
+    animation: fadeInUp 1s ease-out;
 }
 
-audio {
-    margin-top: 20px;
-    position: relative;
-    z-index: 2;
-}
-
-.floating-hearts {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.floating-element { /* Combined style for hearts and numbers */
-    position: absolute;
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.7);
-    animation: float 8s linear infinite;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(calc(var(--random-x) * 1vw)) rotate(360deg);
+@keyframes fadeInUp {
+    from {
         opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-
-/* Style for the "ДАЛЕЕ" button */
 #nextButton {
     padding: 15px 30px;
     font-size: 18px;
-    background-color: #007BFF; /* Blue */
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 2;
-    margin-top: 20px; /* Add some space */
+    margin-top: 20px;
+    display: none;
 }
 
 #nextButton:hover {
     background-color: #0056b3;
 }
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle 1.5s linear forwards;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* New animation styles */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-text {
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes colorChange {
+    0% { color: #ff0000; }
+    25% { color: #00ff00; }
+    50% { color: #0000ff; }
+    75% { color: #ffff00; }
+    100% { color: #ff0000; }
+}
+
+.color-change {
+    animation: colorChange 5s linear infinite;
+}
+
 </style>
 </head>
 <body>
 
-<div class="floating-hearts"></div>
+<div id="warning">прочитай пожалуйста до конца. чтобы появился новый просто нажми на пустое место</div>
 
-<h1>нажми, так будет лучше)</h1>
+<div id="textContainer">
+    <p id="text1" class="rotate-text">сегодня этот день</p>
+    <p id="text2" class="color-change">думаю, один из самых твоих любимых</p>
+    <p id="text3" >этот текст писал искренее от всего сердца</p>
+    <p id="text4_1">время идет и идет.</p>
+    <p id="text4_2">ты все взрослеешь и взрослеешь.</p>
+    <p id="text4_3">в этот день тебе исполняется 15 лет,</p>
+    <p id="text4_4">как быстро летит время.</p>
+    <p id="text4_5">но ты как была, так и осталась -</p>
+    <p id="text4_6">невероятно красивая, с доброй душой</p>
+    <p id="text4_7">и милым характером.</p>
+    <p id="text4_8">надеюсь, никогда не растеряешь эту часть себя.</p>
+    <p id="text4_9">в твои 15 хочу пожелать тебе того,</p>
+    <p id="text4_10">чего ты хочешь, то, от чего будет кружится голова.</p>
+    <p id="text4_11">будь такой какая ты есть, иди по жизни так, как чувствуешь.</p>
+    <p id="text4_12">лови каждый момент и делай его своим,</p>
+    <p id="text4_13">потому что жизнь одна,</p>
+    <p id="text4_14">и ее надо прожить так, чтобы потом все вспоминать с улыбкой.</p>
+    <p id="text4_15">забудь про все рамки и правила -</p>
+    <p id="text4_16">впереди столько возможностей просто взять и сделать все,</p>
+    <p id="text4_17">о чем мечтала. пусть каждый твой день будет просто лучшим из лучших -</p>
+    <p id="text4_18">с кучей радости, энергии и кайфа. улыбайся, сияй и будь на позитиве.</p>
+    <p id="text4_19">ты всегда была человеком с большим сердцем,</p>
+    <p id="text4_20">и это видно по тому, как ты относишься к окружающим.</p>
+    <p id="text4_21">твоя доброта и искренность — это то, что делает тебя особенной.</p>
+    <p id="text4_22">эти качества всегда остаются с тобой,</p>
+    <p id="text4_23">ведь они помогают не только тебе, но и всем, кто рядом.</p>
+    <p id="text4_24">ты умеешь вдохновлять, поддерживать и дарить тепло, и это никаких денег не стоит.</p>
+    <p id="text4_25">в этот день я хочу пожелать тебе,</p>
+    <p id="text4_26">чтобы ты никогда не боялась быть собой.</p>
+    <p id="text4_27">мир иногда пытается навязать свои правила,</p>
+    <p id="text4_28">но ты всегда можешь выбрать свой путь.</p>
+    <p id="text4_29">не бойся мечтать, не бойся ошибаться</p>
+    <p id="text4_30">и не бойся идти вперед, даже если это кажется сложным.</p>
+    <p id="text4_31">ты сильнее, чем думаешь,</p>
+    <p id="text4_32">и у тебя есть все, чтобы справляться с любыми трудностями.</p>
 
-<button id="myButton">тык*</button>
-
-<audio id="myAudio" src="14.mp3" preload="auto" loop></audio>  <!-- Added loop attribute -->
+    <p id="text5" >пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый момент приносит тебе радость, а каждый новый опыт делает тебя еще сильнее и увереннее. не забывай, что жизнь — это не только большие достижения, но и маленькие радости, которые делают тебя по-настоящему прекрасной.</p>
+</div>
 
 <button id="nextButton">ДАЛЕЕ</button>
 
 <script>
-const button = document.getElementById("myButton");
-const audio = document.getElementById("myAudio");
+const warning = document.getElementById("warning");
+const textContainer = document.getElementById("textContainer");
+const texts = [
+    document.getElementById("text1"),
+    document.getElementById("text2"),
+    document.getElementById("text3"),
+    document.getElementById("text4_1"),
+    document.getElementById("text4_2"),
+    document.getElementById("text4_3"),
+    document.getElementById("text4_4"),
+    document.getElementById("text4_5"),
+    document.getElementById("text4_6"),
+    document.getElementById("text4_7"),
+    document.getElementById("text4_8"),
+    document.getElementById("text4_9"),
+    document.getElementById("text4_10"),
+    document.getElementById("text4_11"),
+    document.getElementById("text4_12"),
+    document.getElementById("text4_13"),
+    document.getElementById("text4_14"),
+    document.getElementById("text4_15"),
+    document.getElementById("text4_16"),
+    document.getElementById("text4_17"),
+    document.getElementById("text4_18"),
+    document.getElementById("text4_19"),
+    document.getElementById("text4_20"),
+    document.getElementById("text4_21"),
+    document.getElementById("text4_22"),
+    document.getElementById("text4_23"),
+    document.getElementById("text4_24"),
+    document.getElementById("text4_25"),
+    document.getElementById("text4_26"),
+    document.getElementById("text4_27"),
+    document.getElementById("text4_28"),
+    document.getElementById("text4_29"),
+    document.getElementById("text4_30"),
+    document.getElementById("text4_31"),
+    document.getElementById("text4_32"),
+    document.getElementById("text5")
+];
+let currentTextIndex = 0;
 const nextButton = document.getElementById("nextButton");
 
-// Play audio on page load
-audio.play();
+// Hide warning after 4 seconds
+setTimeout(() => {
+    warning.style.opacity = 0;
+    setTimeout(() => {
+        warning.style.display = "none";
+    }, 1000);
+}, 4000);
 
-button.addEventListener("click", function() {
-  audio.play();
+// Show first text on body tap
+document.body.addEventListener("click", function(e) {
+    if (currentTextIndex < texts.length) {
+        // Fade out previous text
+        if (currentTextIndex > 0) {
+            texts[currentTextIndex - 1].style.display = "none";
+        }
+
+        // Show new text
+        texts[currentTextIndex].style.display = "block";
+
+        createSparkle(e.pageX, e.pageY); // Add sparkle on tap
+
+        currentTextIndex++;
+    }
+
+    // Show "Далее" button when all texts are displayed
+    if (currentTextIndex === texts.length) {
+        nextButton.style.display = "block";
+    }
 });
 
+// "Далее" button click event
 nextButton.addEventListener("click", function() {
-    window.open("pozd.html", "_blank"); // Opens in new tab
+    window.location.href = "flower.html"; // Замените "flower.html" на нужное перенаправление
 });
 
-function createFloatingElement(content) { // Generic function for hearts and numbers
-    const container = document.querySelector('.floating-hearts');
-    const element = document.createElement('div');
-    element.innerHTML = content;
-    element.className = 'floating-element'; // Use combined style
-
-    const startPos = Math.random() * 100;
-    element.style.left = startPos + 'vw';
-
-    const duration = 6 + Math.random() * 4;
-    element.style.animationDuration = duration + 's';
-
-    // Random horizontal movement
-    const randomX = Math.random() * 20 - 10; // between -10 and 10
-    element.style.setProperty('--random-x', randomX);
-	element.style.fontSize = (20 + Math.random() * 30) + 'px';  // Random font size
-
-    container.appendChild(element);
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    document.body.appendChild(sparkle);
 
     setTimeout(() => {
-        element.remove();
-    }, duration * 1000);
+        sparkle.remove();
+    }, 1500);
 }
-
-function createFloatingHearts() {
-    createFloatingElement('❤'); // Call generic function for heart
-}
-
-
-function createFloatingNumbers() {
-   createFloatingElement('15'); // Call generic function for number
-}
-
-setInterval(createFloatingHearts, 200); // Create hearts
-setInterval(createFloatingNumbers, 5000)  // Create numbers
 </script>
 
 </body>
