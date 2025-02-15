@@ -29,10 +29,13 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative; /* Add relative positioning */
 }
 
 h1, button {
     background-color: black; /* Фон текста черный */
+    position: relative; /* Add relative positioning */
+    z-index: 2; /* Ensure text is above floating hearts */
 }
 
 button {
@@ -44,6 +47,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: relative; /* Add relative positioning */
+    z-index: 2; /* Ensure button is above floating hearts */
 }
 
 button:hover {
@@ -52,10 +57,59 @@ button:hover {
 
 audio {
     margin-top: 20px;
+    position: relative; /* Add relative positioning */
+    z-index: 2; /* Ensure audio element is above floating hearts */
+}
+
+/* Floating heart styles */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Place behind other elements */
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7); /* Slightly transparent */
+    animation: float 8s linear infinite; /* Adjust speed as needed */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(calc(var(--random-x) * 1vw)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Number 15 style */
+.number-15 {
+    position: absolute;
+    font-size: 100px;
+    color: white;
+    opacity: 0.5;
+    z-index: 1; /* Place behind main content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 </style>
 </head>
 <body>
+
+<div class="floating-hearts"></div>
+<div class="number-15">15</div>
 
 <h1>нажми, так будет лучше)</h1>
 
@@ -76,6 +130,31 @@ button.addEventListener("click", function() {
     // audio.pause(); //Останавливает после окончания
   });
 });
+
+function createFloatingHearts() {
+    const container = document.querySelector('.floating-hearts');
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤';
+    heart.className = 'floating-heart';
+
+    const startPos = Math.random() * 100;
+    heart.style.left = startPos + 'vw';
+
+    const duration = 6 + Math.random() * 4;
+    heart.style.animationDuration = duration + 's';
+
+     // Random horizontal movement
+     const randomX = Math.random() * 20 - 10; // between -10 and 10
+     heart.style.setProperty('--random-x', randomX);
+
+    container.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
+}
+
+setInterval(createFloatingHearts, 200); // Create hearts more frequently
 </script>
 
 </body>
