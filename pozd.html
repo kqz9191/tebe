@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>С Днем Рождения!</title>
+<style>
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#warning {
+    font-size: 1.5em;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+#textContainer {
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 3s ease-in-out; /* Fade-in over 3 seconds */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#textContainer p {
+    margin-bottom: 20px;
+    display: none; /* Initially hide all paragraphs */
+}
+
+</style>
+</head>
+<body>
+
+<div id="warning">Прочитай, пожалуйста, до конца, я старался. Чтобы появился новый текст, просто тапни по пустому месту)</div>
+
+<div id="textContainer">
+    <p id="text1">сегодня этот день</p>
+    <p id="text2">думаю, один из самых любимых</p>
+    <p id="text3">этот текст писал искренне от всего сердца</p>
+    <p id="text4">время идет и идет. ты все взрослеешь и взрослеешь.
+в этот день тебе исполняется 15 лет, как быстро летит время. но ты как была, так и осталась - невероятно красивая, с доброй душой и милым характером. надеюсь, никогда не растеряешь эту часть себя. в твои 15 хочу пожелать тебе того чего ты хочешь, то, от чего будет кружится голова. будь такой какая ты есть, иди по жизни так, как чувствуешь. лови каждый момент и делай его своим, потому что жизнь одна, и ее надо прожить так, чтобы потом все вспоминать с улыбкой. забудь про все рамки и правила - впереди столько возможностей просто взять и сделать все, о чем мечтала. пусть каждый твой день будет просто лучшим из лучших - с кучей радости, энергии и кайфа. улыбайся, сияй и будь на позитиве. ты всегда была человеком с большим сердцем, и это видно по тому, как ты относишься к окружающим. твоя доброта и искренность — это то, что делает тебя особенной. эти качества всегда остаются с тобой, ведь они помогают не только тебе, но и всем, кто рядом. ты умеешь вдохновлять, поддерживать и дарить тепло, и это никаких денег не стоит. в этот день я хочу пожелать тебе, чтобы ты никогда не боялась быть собой. мир иногда пытается навязать свои правила, но ты всегда можешь выбрать свой путь. не бойся мечтать, не бойся ошибаться и не бойся идти вперед, даже если это кажется сложным. ты сильнее, чем думаешь, и у тебя есть все, чтобы справляться с любыми трудностями.</p>
+    <p id="text5">пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый момент приносит тебе радость, а каждый новый опыт делает тебя еще сильнее и увереннее. не забывай, что жизнь — это не только большие достижения, но и маленькие радости, которые делают тебя по-настоящему прекрасной.</p>
+<p id="text6">дальше я хочу добавить второй сайт под названием love.zip</p>
+</div>
+
+<script>
+const warning = document.getElementById("warning");
+const textContainer = document.getElementById("textContainer");
+const texts = [
+    document.getElementById("text1"),
+    document.getElementById("text2"),
+    document.getElementById("text3"),
+    document.getElementById("text4"),
+    document.getElementById("text5"),
+	document.getElementById("text6")
+];
+let currentTextIndex = 0;
+
+// Hide warning after 4 seconds
+setTimeout(() => {
+    warning.style.opacity = 0;
+    setTimeout(() => {
+        warning.style.display = "none";
+    }, 1000);
+}, 4000);
+
+// Show first text on body tap
+document.body.addEventListener("click", function() {
+    if (currentTextIndex < texts.length) {
+        texts[currentTextIndex].style.display = "block";
+        textContainer.style.opacity = 1;
+
+        currentTextIndex++;
+    } else if (currentTextIndex === texts.length) {
+    	window.location.href = "love.zip";
+	}
+
+});
+</script>
+
+</body>
+</html>
