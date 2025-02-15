@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>марточке)))</title>
+<title>кишмишевой</title>
 <style>
 body {
     background-color: black;
@@ -119,11 +119,11 @@ body {
 </head>
 <body>
 
-<div id="warning">прочитай пожалуйста до конца. чтобы появился новый просто нажми на пустое место</div>
+<div id="warning">прочитай пожалуйста все до конца. чтобы появился новый текст просто тапни по любому пустому месту)</div>
 
 <div id="textContainer">
     <p id="text1" class="rotate-text">сегодня этот день</p>
-    <p id="text2" class="color-change">думаю, один из самых твоих любимых</p>
+    <p id="text2" class="color-change">думаю, один из самых любимых</p>
     <p id="text3" >этот текст писал искренее от всего сердца</p>
     <p id="text4_1">время идет и идет.</p>
     <p id="text4_2">ты все взрослеешь и взрослеешь.</p>
@@ -206,17 +206,20 @@ const texts = [
 ];
 let currentTextIndex = 0;
 const nextButton = document.getElementById("nextButton");
+let tapEnabled = false; // Добавлено состояние для отслеживания доступности тапа
 
 // Hide warning after 4 seconds
-setTimeout(() => {
+let warningTimer = setTimeout(() => {
     warning.style.opacity = 0;
     setTimeout(() => {
         warning.style.display = "none";
+        tapEnabled = true; // Разрешить тапы после исчезновения предупреждения
     }, 1000);
 }, 4000);
 
-// Show first text on body tap
-document.body.addEventListener("click", function(e) {
+function showNextText(e) {
+    if (!tapEnabled) return; // Ничего не делаем, если тапы не разрешены
+
     if (currentTextIndex < texts.length) {
         // Fade out previous text
         if (currentTextIndex > 0) {
@@ -227,6 +230,11 @@ document.body.addEventListener("click", function(e) {
         texts[currentTextIndex].style.display = "block";
 
         createSparkle(e.pageX, e.pageY); // Add sparkle on tap
+		
+		tapEnabled = false; //Отключить тап.
+		setTimeout(() => {
+			tapEnabled = true; //Включить через 2 секунды.
+		},2000);
 
         currentTextIndex++;
     }
@@ -234,8 +242,12 @@ document.body.addEventListener("click", function(e) {
     // Show "Далее" button when all texts are displayed
     if (currentTextIndex === texts.length) {
         nextButton.style.display = "block";
+		document.body.removeEventListener('click', showNextText); //Удалить прослушиватель, чтобы больше текст не появлялся.
     }
-});
+}
+
+// Show first text on body tap
+document.body.addEventListener("click", showNextText);
 
 // "Далее" button click event
 nextButton.addEventListener("click", function() {
