@@ -19,9 +19,9 @@ body {
     font-family: sans-serif;
     text-align: center;
     padding-top: 50px;
-    animation: gradientBackground 60s infinite; /* Very slow animation */
+    animation: gradientBackground 60s infinite;
     background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
-    background-size: 1600% 1600%; /* Large size for smooth transitions */
+    background-size: 1600% 1600%;
     color: white;
     margin: 0;
     min-height: 100vh;
@@ -29,39 +29,38 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    position: relative; /* Add relative positioning */
+    position: relative;
 }
 
 h1, button {
-    background-color: black; /* Фон текста черный */
-    position: relative; /* Add relative positioning */
-    z-index: 2; /* Ensure text is above floating hearts */
+    background-color: black;
+    position: relative;
+    z-index: 2;
 }
 
 button {
     padding: 15px 30px;
     font-size: 18px;
-    background-color: #4CAF50; /* Зеленый */
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    position: relative; /* Add relative positioning */
-    z-index: 2; /* Ensure button is above floating hearts */
+    position: relative;
+    z-index: 2;
 }
 
 button:hover {
-    background-color: #3e8e41; /* Более темный зеленый */
+    background-color: #3e8e41;
 }
 
 audio {
     margin-top: 20px;
-    position: relative; /* Add relative positioning */
-    z-index: 2; /* Ensure audio element is above floating hearts */
+    position: relative;
+    z-index: 2;
 }
 
-/* Floating heart styles */
 .floating-hearts {
     position: absolute;
     top: 0;
@@ -69,14 +68,14 @@ audio {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1; /* Place behind other elements */
+    z-index: 1;
 }
 
 .floating-heart {
     position: absolute;
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.7); /* Slightly transparent */
-    animation: float 8s linear infinite; /* Adjust speed as needed */
+    color: rgba(255, 255, 255, 0.7);
+    animation: float 8s linear infinite;
 }
 
 @keyframes float {
@@ -90,19 +89,37 @@ audio {
     }
 }
 
-/* Number 15 style */
 .number-15 {
     position: absolute;
     font-size: 100px;
     color: white;
     opacity: 0.5;
-    z-index: 1; /* Place behind main content */
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-family: sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the "Далее" button */
+#nextButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007BFF; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2;
+    margin-top: 20px; /* Add some space */
+}
+
+#nextButton:hover {
+    background-color: #0056b3;
 }
 </style>
 </head>
@@ -115,20 +132,24 @@ audio {
 
 <button id="myButton">тык*</button>
 
-<audio id="myAudio" src="14.mp3" preload="auto"></audio>
+<audio id="myAudio" src="14.mp3" preload="auto" loop></audio>  <!-- Added loop attribute -->
+
+<button id="nextButton">ДАЛЕЕ</button>
 
 <script>
 const button = document.getElementById("myButton");
 const audio = document.getElementById("myAudio");
+const nextButton = document.getElementById("nextButton");
+
+// Play audio on page load
+audio.play();
 
 button.addEventListener("click", function() {
   audio.play();
+});
 
-  // Дополнительно: сброс на начало после завершения (по желанию)
-  audio.addEventListener("ended", function() {
-    audio.currentTime = 0; // Возвращает к началу
-    // audio.pause(); //Останавливает после окончания
-  });
+nextButton.addEventListener("click", function() {
+    window.location.href = "pozd.html";
 });
 
 function createFloatingHearts() {
@@ -143,9 +164,9 @@ function createFloatingHearts() {
     const duration = 6 + Math.random() * 4;
     heart.style.animationDuration = duration + 's';
 
-     // Random horizontal movement
-     const randomX = Math.random() * 20 - 10; // between -10 and 10
-     heart.style.setProperty('--random-x', randomX);
+    // Random horizontal movement
+    const randomX = Math.random() * 20 - 10; // between -10 and 10
+    heart.style.setProperty('--random-x', randomX);
 
     container.appendChild(heart);
 
