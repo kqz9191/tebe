@@ -3,11 +3,20 @@
 <head>
 <title>любимой марточке</title>
 <style>
+@keyframes rgbBackground {
+  0% { background-color: rgb(255, 0, 0); }   /* Красный */
+  20% { background-color: rgb(255, 255, 0); } /* Желтый */
+  40% { background-color: rgb(0, 255, 0); }   /* Зеленый */
+  60% { background-color: rgb(0, 255, 255); } /* Голубой */
+  80% { background-color: rgb(0, 0, 255); }   /* Синий */
+  100% { background-color: rgb(255, 0, 255); } /* Фиолетовый */
+}
+
 body {
   font-family: sans-serif;
   text-align: center;
   padding-top: 50px;
-  background-color: rgb(34, 34, 34); /* Темный RGB фон */
+  animation: rgbBackground 10s infinite; /* Анимация фона */
   color: white; /* Цвет текста */
 }
 
@@ -35,31 +44,6 @@ audio {
 }
 </style>
 </head>
-<body>
-
-<h1>нажми, так будет лучше)</h1>
-
-<button id="myButton">тык*</button>
-
-<audio id="myAudio" src="14.mp3" preload="auto"></audio>
-
-<script>
-const button = document.getElementById("myButton");
-const audio = document.getElementById("myAudio");
-
-button.addEventListener("click", function() {
-  audio.play();
-
-  // Дополнительно: сброс на начало после завершения (по желанию)
-  audio.addEventListener("ended", function() {
-    audio.currentTime = 0; // Возвращает к началу
-    // audio.pause(); //Останавливает после окончания
-  });
-});
-</script>
-
-</body>
-</html></head>
 <body>
 
 <h1>нажми, так будет лучше)</h1>
