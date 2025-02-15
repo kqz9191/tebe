@@ -4,37 +4,82 @@
 <title>любимой марточке</title>
 <style>
 @keyframes gradientBackground {
-  0% {
-    background: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 255));
-  }
-  25% {
-    background: linear-gradient(45deg, rgb(0, 255, 0), rgb(255, 0, 255));
-  }
-  50% {
-    background: linear-gradient(45deg, rgb(0, 255, 255), rgb(255, 255, 0));
-  }
-  75% {
-    background: linear-gradient(45deg, rgb(255, 0, 255), rgb(0, 255, 0));
-  }
-  100% {
-    background: linear-gradient(45deg, rgb(255, 0, 0), rgb(0, 0, 255));
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 body {
-  font-family: sans-serif;
-  text-align: center;
-  padding-top: 50px;
-  animation: gradientBackground 30s infinite; /* Анимация фона */
-  background-size: 400% 400%; /* Размер градиента */
-  color: white; /* Цвет текста */
-   margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+    animation: gradientBackground 60s infinite; /* Very slow animation */
+    background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
+    background-size: 1600% 1600%; /* Large size for smooth transitions */
+    color: white;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
+
+h1, button {
+    background-color: black; /* Фон текста черный */
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #4CAF50; /* Зеленый */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3e8e41; /* Более темный зеленый */
+}
+
+audio {
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>нажми, так будет лучше)</h1>
+
+<button id="myButton">тык*</button>
+
+<audio id="myAudio" src="14.mp3" preload="auto"></audio>
+
+<script>
+const button = document.getElementById("myButton");
+const audio = document.getElementById("myAudio");
+
+button.addEventListener("click", function() {
+  audio.play();
+
+  // Дополнительно: сброс на начало после завершения (по желанию)
+  audio.addEventListener("ended", function() {
+    audio.currentTime = 0; // Возвращает к началу
+    // audio.pause(); //Останавливает после окончания
+  });
+});
+</script>
+
+</body>
+</html>}
 
 h1, button {
   background-color: black; /* Фон текста черный */
