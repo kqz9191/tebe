@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>С Днем Рождения!</title>
+<title>от всего сердца</title>
 <style>
 body {
     background-color: black;
@@ -10,6 +10,7 @@ body {
     text-align: center;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0;
@@ -25,19 +26,68 @@ body {
 
 #textContainer {
     font-size: 1.2em;
-    opacity: 0;
-    transition: opacity 3s ease-in-out; /* Fade-in over 3 seconds */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    margin-bottom: 20px;
 }
 
 #textContainer p {
     margin-bottom: 20px;
-    display: none; /* Initially hide all paragraphs */
+    display: none;
+    animation: fadeInUp 1s ease-out;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#nextButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: none;
+}
+
+#nextButton:hover {
+    background-color: #0056b3;
+}
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle 1.5s linear forwards;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(180deg);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 <body>
@@ -51,8 +101,9 @@ body {
     <p id="text4">время идет и идет. ты все взрослеешь и взрослеешь.
 в этот день тебе исполняется 15 лет, как быстро летит время. но ты как была, так и осталась - невероятно красивая, с доброй душой и милым характером. надеюсь, никогда не растеряешь эту часть себя. в твои 15 хочу пожелать тебе того чего ты хочешь, то, от чего будет кружится голова. будь такой какая ты есть, иди по жизни так, как чувствуешь. лови каждый момент и делай его своим, потому что жизнь одна, и ее надо прожить так, чтобы потом все вспоминать с улыбкой. забудь про все рамки и правила - впереди столько возможностей просто взять и сделать все, о чем мечтала. пусть каждый твой день будет просто лучшим из лучших - с кучей радости, энергии и кайфа. улыбайся, сияй и будь на позитиве. ты всегда была человеком с большим сердцем, и это видно по тому, как ты относишься к окружающим. твоя доброта и искренность — это то, что делает тебя особенной. эти качества всегда остаются с тобой, ведь они помогают не только тебе, но и всем, кто рядом. ты умеешь вдохновлять, поддерживать и дарить тепло, и это никаких денег не стоит. в этот день я хочу пожелать тебе, чтобы ты никогда не боялась быть собой. мир иногда пытается навязать свои правила, но ты всегда можешь выбрать свой путь. не бойся мечтать, не бойся ошибаться и не бойся идти вперед, даже если это кажется сложным. ты сильнее, чем думаешь, и у тебя есть все, чтобы справляться с любыми трудностями.</p>
     <p id="text5">пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый момент приносит тебе радость, а каждый новый опыт делает тебя еще сильнее и увереннее. не забывай, что жизнь — это не только большие достижения, но и маленькие радости, которые делают тебя по-настоящему прекрасной.</p>
-<p id="text6">дальше я хочу добавить второй сайт под названием love.zip</p>
 </div>
+
+<button id="nextButton">ДАЛЕЕ</button>
 
 <script>
 const warning = document.getElementById("warning");
@@ -62,10 +113,10 @@ const texts = [
     document.getElementById("text2"),
     document.getElementById("text3"),
     document.getElementById("text4"),
-    document.getElementById("text5"),
-	document.getElementById("text6")
+    document.getElementById("text5")
 ];
 let currentTextIndex = 0;
+const nextButton = document.getElementById("nextButton");
 
 // Hide warning after 4 seconds
 setTimeout(() => {
@@ -76,17 +127,43 @@ setTimeout(() => {
 }, 4000);
 
 // Show first text on body tap
-document.body.addEventListener("click", function() {
+document.body.addEventListener("click", function(e) {
     if (currentTextIndex < texts.length) {
+        // Fade out previous text
+        if (currentTextIndex > 0) {
+            texts[currentTextIndex - 1].style.display = "none";
+        }
+
+        // Show new text
         texts[currentTextIndex].style.display = "block";
-        textContainer.style.opacity = 1;
+
+        createSparkle(e.pageX, e.pageY); // Add sparkle on tap
 
         currentTextIndex++;
-    } else if (currentTextIndex === texts.length) {
-    	window.location.href = "love.zip";
-	}
+    }
 
+    // Show "Далее" button when all texts are displayed
+    if (currentTextIndex === texts.length) {
+        nextButton.style.display = "block";
+    }
 });
+
+// "Далее" button click event
+nextButton.addEventListener("click", function() {
+    window.open("love.zip", "_blank"); // Opens in new tab
+});
+
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1500);
+}
 </script>
 
 </body>
