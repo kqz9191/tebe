@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Нажми, так будет лучше!</title>
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 50px;
+  background-color: #f0f0f0;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #4CAF50; /* Зеленый */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3e8e41; /* Более темный зеленый */
+}
+
+audio {
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Нажми и улыбнись!</h1>
+
+<button id="myButton">Нажми, так будет лучше!</button>
+
+<audio id="myAudio" src="14.mp3" preload="auto"></audio>
+
+<script>
+const button = document.getElementById("myButton");
+const audio = document.getElementById("myAudio");
+
+button.addEventListener("click", function() {
+  audio.play();
+
+  // Дополнительно: сброс на начало после завершения (по желанию)
+  audio.addEventListener("ended", function() {
+    audio.currentTime = 0; // Возвращает к началу
+    // audio.pause(); //Останавливает после окончания
+  });
+});
+</script>
+
+</body>
+</html>
