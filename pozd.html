@@ -124,8 +124,8 @@ body {
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+  from { width: 0 }
+  to { width: 100% }
 }
 
 #warning {
@@ -133,7 +133,8 @@ body {
     white-space: nowrap;
     margin: 0 auto;
     letter-spacing: .15em;
-    animation: typing 3.5s steps(40, end) forwards;
+    animation:
+      typing 3.5s steps(40, end) forwards;
 }
 
 @keyframes blurFadeIn {
@@ -226,27 +227,27 @@ body {
 }
 
 @keyframes flicker {
-    0% { opacity: 0.8; }
-    5% { opacity: 0.9; }
-    10% { opacity: 0.7; }
-    15% { opacity: 1.0; }
-    20% { opacity: 0.9; }
-    25% { opacity: 0.8; }
-    30% { opacity: 0.7; }
-    35% { opacity: 0.9; }
-    40% { opacity: 1.0; }
-    45% { opacity: 0.8; }
-    50% { opacity: 0.9; }
-    55% { opacity: 0.7; }
-    60% { opacity: 1.0; }
-    65% { opacity: 0.9; }
-    70% { opacity: 0.8; }
-    75% { opacity: 0.7; }
-    80% { opacity: 0.9; }
-    85% { opacity: 1.0; }
-    90% { opacity: 0.8; }
-    95% { opacity: 0.9; }
-    100% { opacity: 1.0; }
+  0%   { opacity: 0.8; }
+  5%   { opacity: 0.9; }
+  10%  { opacity: 0.7; }
+  15%  { opacity: 1.0; }
+  20%  { opacity: 0.9; }
+  25%  { opacity: 0.8; }
+  30%  { opacity: 0.7; }
+  35%  { opacity: 0.9; }
+  40%  { opacity: 1.0; }
+  45%  { opacity: 0.8; }
+  50%  { opacity: 0.9; }
+  55%  { opacity: 0.7; }
+  60%  { opacity: 1.0; }
+  65%  { opacity: 0.9; }
+  70%  { opacity: 0.8; }
+  75%  { opacity: 0.7; }
+  80%  { opacity: 0.9; }
+  85%  { opacity: 1.0; }
+  90%  { opacity: 0.8; }
+  95%   { opacity: 0.9; }
+  100% { opacity: 1.0; }
 }
 
 .flicker {
@@ -254,9 +255,9 @@ body {
 }
 
 .blur-fade-in {
-    animation: blurFadeIn 1s ease-out forwards;
-    filter: blur(20px); /* Initial blur */
-    opacity: 0;          /* Initial opacity */
+  animation: blurFadeIn 1s ease-out forwards;
+  filter: blur(20px); /* Initial blur */
+  opacity: 0;          /* Initial opacity */
 }
 
 </style>
@@ -278,9 +279,9 @@ body {
     <p id="text4_7">и милым характером.</p>
     <p id="text4_8">надеюсь, никогда не растеряешь эту часть себя.</p>
     <p id="text4_9">в твои 15 хочу пожелать тебе того,</p>
-    <p id="text4_10">чего ты хочешь, то, от чего будет кружится голова.</п>
+    <p id="text4_10">чего ты хочешь, то, от чего будет кружится голова.</p>
     <p id="text4_11">будь такой какая ты есть, иди по жизни так, как чувствуешь.</p>
-    <п id="text4_12">лови каждый момент и делай его своим,</p>
+    <p id="text4_12">лови каждый момент и делай его своим,</p>
     <p id="text4_13">потому что жизнь одна,</p>
     <p id="text4_14">и ее надо прожить так, чтобы потом все вспоминать с улыбкой.</p>
     <p id="text4_15">забудь про все рамки и правила -</p>
@@ -302,7 +303,7 @@ body {
     <p id="text4_31">ты сильнее, чем думаешь,</p>
     <p id="text4_32">и у тебя есть все, чтобы справляться с любыми трудностями.</p>
 
-    <p id="text5" >пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый м[...]
+    <p id="text5" >пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый момент приносит тебе радость, а каждый новый опыт делает тебя еще сильнее и увереннее. не забывай, что жизнь — это не только большие достижения, но и маленькие радости, которые делают тебя по-настоящему прекрасной.</p>
 </div>
 
 <button id="nextButton">ДАЛЕЕ</button>
@@ -408,19 +409,6 @@ document.body.addEventListener("click", showNextText);
 // "Далее" button click event
 nextButton.addEventListener("click", function() {
     window.location.href = "la/index.html"; // Corrected path
-});
-
-// Fullscreen request on page load
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-        document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-        document.documentElement.msRequestFullscreen();
-    }
 });
 
 function createSparkle(x, y) {
