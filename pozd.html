@@ -253,6 +253,13 @@ body {
 .flicker {
     animation: flicker 3s linear infinite;
 }
+
+.blur-fade-in {
+  animation: blurFadeIn 1s ease-out forwards;
+  filter: blur(20px); /* Initial blur */
+  opacity: 0;          /* Initial opacity */
+}
+
 </style>
 </head>
 <body>
@@ -260,8 +267,8 @@ body {
 <div id="warning">прочитай все пожалуйста. чтобы появился новый текст просто тапни по экрану (раз в две секунды)</div>
 
 <div id="textContainer">
-    <p id="text1" class="rotate-text zoom-in">сегодня этот день</p>
-    <p id="text2" class="color-change bounce-in">думаю, один из самых любимых</p>
+    <p id="text1" class="rotate-text">сегодня этот день</p>
+    <p id="text2" class="color-change">думаю, один из самых любимых</p>
     <p id="text3" class="flicker">этот текст писал искренее от всего сердца</p>
     <p id="text4_1">время идет и идет.</p>
     <p id="text4_2">ты все взрослеешь и взрослеешь.</p>
@@ -360,7 +367,7 @@ let warningTimer = setTimeout(() => {
 }, 3500);
 
 function showNextText(e) {
-   if (!tapEnabled) return;
+    if (!tapEnabled) return;
 
     if (currentTextIndex < texts.length) {
         // Hide previous text after a click
@@ -368,16 +375,10 @@ function showNextText(e) {
             texts[currentTextIndex - 1].style.display = "none"; // Just hide the previous text
         }
 
-
         // Show new text with animations
         texts[currentTextIndex].style.display = "block";
-        texts[currentTextIndex].classList.add('slide-in-left'); // Initial animation
-        texts[currentTextIndex].classList.add('zoom-in');
-
-          // Randomly add more animations
-          const randomAnimations = ['zoom-in', 'bounce-in', 'flicker'];
-          const randomIndex = Math.floor(Math.random() * randomAnimations.length);
-          texts[currentTextIndex].classList.add(randomAnimations[randomIndex]);
+        texts[currentTextIndex].classList.add('blur-fade-in'); // Apply blur and fade in
+        texts[currentTextIndex].classList.add('slide-in-left');
 
 
         createSparkle(e.clientX, e.clientY);
