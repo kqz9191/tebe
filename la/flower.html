@@ -10,6 +10,56 @@
 
   <!-- Document Title -->
   <title>FLOWERS</title>
+  <style>
+        body {
+            background-color: black; /* Initial black background */
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        #message-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+        #next-button {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3, #f44336);
+            background-size: 400% 400%;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: none; /* Initially hidden */
+            animation: gradientAnimation 5s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Ensure content stays visible */
+        .flowers, .title {
+            position: relative;
+            z-index: 1; /* Place above background elements */
+        }
+
+    </style>
 </head>
 
 <body class="not-loaded">
@@ -316,9 +366,35 @@
 
   <!-- Title -->
   <h1 class="title"><span id="title"></span></h1>
+
+  <!-- Message Container -->
+  <div id="message-container">Для тебя есть еще один подарок, если ты напишешь этому человеку, то получишь его.</div>
+
+  <!-- Next Button -->
+  <button id="next-button">Далее</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const messageContainer = document.getElementById('message-container');
+      const nextButton = document.getElementById('next-button');
+      const body = document.body; // Select the body
+
+        // Initially, the flowers, and the rest of the page are visible
+        // After seven seconds it all gets black
+      setTimeout(() => {
+          messageContainer.style.display = 'block';
+      }, 0);
+
+      setTimeout(function() {
+          messageContainer.style.display = 'none'; // Hide the message
+          nextButton.style.display = 'block';     // Show the button
+      }, 7000);
+
+      nextButton.addEventListener('click', function() {
+        window.location.href = 'vk.com/kqz9999'; // Redirect to the link
+      });
+    });
+  </script>
 </body>
 
 </html>
-
-<!-- Import Javascript -->
-<script src="js/main.js"></script>
