@@ -10,6 +10,32 @@
 
   <!-- Document Title -->
   <title>FLOWERS</title>
+  <style>
+    body.disintegrating .flowers > * { /* Selects direct children of .flowers */
+      animation: disintegrate 1s forwards;
+    }
+
+    @keyframes disintegrate {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100px) rotate(360deg); /* Example Disintegration */
+      }
+    }
+
+    body.blackout .night,
+    body.blackout .flowers {
+      display: none;
+    }
+
+    body.blackout {
+      background-color: black;
+    }
+
+  </style>
 </head>
 
 <body class="not-loaded">
@@ -321,4 +347,18 @@
 </html>
 
 <!-- Import Javascript -->
-<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const flowersContainer = document.querySelector('.flowers');
+
+    setTimeout(function() {
+      document.body.classList.add('disintegrating');
+      setTimeout(function() {
+        document.body.classList.remove('disintegrating'); // Remove class for potential re-animation
+        document.body.classList.add('blackout');
+
+      }, 1000); // Match the disintegration animation duration (1s)
+
+    }, 6000); // 6 seconds
+  });
+</script>
