@@ -318,7 +318,9 @@
   <h1 class="title"><span id="title"></span></h1>
 
   <!-- Black background overlay -->
-  <div class="black-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 9999;"></div>
+  <div class="black-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 9999;">
+    <p id="gift-text" style="display: none; color: white; font-size: 2em; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">знаешь, для тебя есть еще один подарок...</p>
+  </div>
 </body>
 
 </html>
@@ -329,15 +331,39 @@
 <script>
   // Delay in milliseconds after which the black background appears
   const blackScreenDelay = 10000; // Set to 10000 milliseconds (10 seconds)
+  const textDisplayDelay = 3000; // Delay for the text to appear after the black screen (3 seconds)
+
+  console.log("Script started."); // Debugging: Check if script is running
 
   setTimeout(() => {
+    console.log("Black screen timeout triggered."); // Debugging
+
     // Show black overlay
-    document.querySelector('.black-overlay').style.display = 'block';
+    const blackOverlay = document.querySelector('.black-overlay');
+    if (blackOverlay) {
+      blackOverlay.style.display = 'block';
+      console.log("Black overlay displayed."); // Debugging
+    } else {
+      console.error("Black overlay element not found!"); // Debugging
+    }
+
     document.querySelector('.flowers').style.display = 'none';  // Hide flowers
     document.querySelector('.night').style.display = 'none';    // Hide night background
     document.querySelector('.title').style.display = 'none';   // Hide title
 
-    // Optionally, you can add code here to hide or remove other elements
-    // to ensure only the black background is visible.
+    // Display text after a delay
+    setTimeout(() => {
+      console.log("Text display timeout triggered."); // Debugging
+      const giftText = document.getElementById('gift-text');
+      if (giftText) {
+        giftText.style.display = 'block';
+        console.log("Gift text displayed."); // Debugging
+      } else {
+        console.error("Gift text element not found!"); // Debugging
+      }
+    }, textDisplayDelay);
+
   }, blackScreenDelay);
-        </script>
+
+  console.log("Script finished executing (timeouts set)."); // Debugging
+    </script>
