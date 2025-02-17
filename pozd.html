@@ -65,6 +65,25 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
+#fullscreenButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#fullscreenButton:hover {
+    background-color: #42a5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
 .sparkle {
     position: absolute;
     width: 6px;
@@ -303,10 +322,11 @@ body {
     <p id="text4_31">ты сильнее, чем думаешь,</p>
     <p id="text4_32">и у тебя есть все, чтобы справляться с любыми трудностями.</p>
 
-    <p id="text5" >пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый момент приносит тебе радость, а каждый новый опыт делает тебя еще сильнее и увереннее. не забывай, что жизнь — это не только большие достижения, но и маленькие радости, которые делают тебя по-настоящему прекрасной.</p>
+    <p id="text5" >пусть твои дни будут наполнены яркими эмоциями, новыми открытиями и приятными сюрпризами. каждый м[...]
 </div>
 
 <button id="nextButton">ДАЛЕЕ</button>
+<button id="fullscreenButton">Полноэкранный режим</button>
 
 <script>
 const warning = document.getElementById("warning");
@@ -409,6 +429,20 @@ document.body.addEventListener("click", showNextText);
 // "Далее" button click event
 nextButton.addEventListener("click", function() {
     window.location.href = "la/index.html"; // Corrected path
+});
+
+// Fullscreen button click event
+const fullscreenButton = document.getElementById("fullscreenButton");
+fullscreenButton.addEventListener("click", function() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+    }
 });
 
 function createSparkle(x, y) {
