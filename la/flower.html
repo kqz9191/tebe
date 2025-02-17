@@ -316,9 +316,28 @@
 
   <!-- Title -->
   <h1 class="title"><span id="title"></span></h1>
+
+  <!-- Black background overlay -->
+  <div class="black-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 9999;"></div>
 </body>
 
 </html>
 
 <!-- Import Javascript -->
 <script src="js/main.js"></script>
+
+<script>
+  // Delay in milliseconds after which the black background appears
+  const blackScreenDelay = 5000; // Adjust as needed
+
+  setTimeout(() => {
+    // Show black overlay
+    document.querySelector('.black-overlay').style.display = 'block';
+    document.querySelector('.flowers').style.display = 'none';  // Hide flowers
+    document.querySelector('.night').style.display = 'none';    // Hide night background
+    document.querySelector('.title').style.display = 'none';   // Hide title
+
+    // Optionally, you can add code here to hide or remove other elements
+    // to ensure only the black background is visible.
+  }, blackScreenDelay);
+  </script>
