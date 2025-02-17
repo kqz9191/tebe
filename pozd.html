@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
 body {
-    background-color: #121212; /* Darker background */
-    color: #f0f0f0; /* Lighter text */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sleek font */
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -17,36 +17,39 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    overscroll-behavior: none; /* Disable scroll-chaining */
+    overscroll-behavior: none;
 }
 
 #warning {
     font-size: 1.3em;
     opacity: 1;
-    transition: opacity 0.8s ease-in-out; /* Faster fade out */
+    transition: opacity 0.8s ease-in-out;
     padding: 15px;
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.7); /* Subtle background */
+    background-color: rgba(0, 0, 0, 0.7);
+    word-break: break-word; /* This will prevent text from overflowing */
+    max-width: 90%; /* Limit the width to 90% of the viewport */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 #textContainer {
     font-size: 1.1em;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.6s ease-in-out; /* Slight delay for initial fade-in */
-    margin-bottom: 30px; /* More space */
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    margin-bottom: 30px;
 }
 
 #textContainer p {
-    margin-bottom: 25px; /* Even more spacing between paragraphs */
+    margin-bottom: 25px;
     display: none;
     animation: fadeInUp 1s ease-out;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Subtle text shadow */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px); /* Increased distance */
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -55,22 +58,22 @@ body {
 }
 
 #nextButton {
-    padding: 18px 35px; /* Slightly larger button */
-    font-size: 19px; /* Slightly larger text */
-    background-color: #64b5f6; /* Lighter, more vibrant blue */
+    padding: 18px 35px;
+    font-size: 19px;
+    background-color: #64b5f6;
     color: white;
     border: none;
-    border-radius: 8px; /* More rounded corners */
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform */
-    margin-top: 30px; /* More space */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 30px;
     display: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Button shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #nextButton:hover {
-    background-color: #42a5f5; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    background-color: #42a5f5;
+    transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -78,27 +81,26 @@ body {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #bbdefb; /* Light blue sparkle */
+    background: #bbdefb;
     border-radius: 50%;
     pointer-events: none;
-    animation: sparkle 1.2s linear forwards; /* Faster sparkles */
+    animation: sparkle 1.2s linear forwards;
 }
 
 @keyframes sparkle {
     0% {
         transform: scale(0) rotate(0deg);
-        opacity: 0.8; /* More visible initial sparkle */
+        opacity: 0.8;
     }
     50% {
         opacity: 0.8;
     }
     100% {
-        transform: scale(1.2) rotate(180deg); /* Larger final size */
+        transform: scale(1.2) rotate(180deg);
         opacity: 0;
     }
 }
 
-/* New animation styles */
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -109,22 +111,21 @@ body {
 }
 
 .rotate-text {
-    animation: rotate 6s linear infinite; /* Adjusted speed */
+    animation: rotate 6s linear infinite;
 }
 
 @keyframes colorChange {
-    0% { color: #e91e63; } /* Pink */
-    25% { color: #9c27b0; } /* Purple */
-    50% { color: #3f51b5; } /* Indigo */
-    75% { color: #2196f3; } /* Blue */
+    0% { color: #e91e63; }
+    25% { color: #9c27b0; }
+    50% { color: #3f51b5; }
+    75% { color: #2196f3; }
     100% { color: #e91e63; }
 }
 
 .color-change {
-    animation: colorChange 6s linear infinite; /* Adjusted speed */
+    animation: colorChange 6s linear infinite;
 }
 
-/* New fade-in animation for the container */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -134,22 +135,20 @@ body {
     }
 }
 
-/* Added a typing animation for the warning */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
 }
 
 #warning {
-    overflow: hidden; /* Ensures the content is not revealed until the animation is done */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Giving a width value */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation: 
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
       typing 3.5s steps(40, end) forwards;
 }
 
-/* Blur Animation for better transitions between paragraphs */
 @keyframes blurFadeIn {
     0% {
         opacity: 0;
@@ -159,6 +158,38 @@ body {
         opacity: 1;
         filter: blur(0px);
     }
+}
+
+/* New animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s linear infinite;
 }
 
 </style>
@@ -252,55 +283,56 @@ const texts = [
 ];
 let currentTextIndex = 0;
 const nextButton = document.getElementById("nextButton");
-let tapEnabled = false; // Добавлено состояние для отслеживания доступности тапа
+let tapEnabled = false;
 
 // Hide warning after 4 seconds
 let warningTimer = setTimeout(() => {
     warning.style.opacity = 0;
     setTimeout(() => {
         warning.style.display = "none";
-        tapEnabled = true; // Разрешить тапы после исчезновения предупреждения
-
-        // Fade in the text container
+        tapEnabled = true;
         textContainer.style.opacity = 1;
         textContainer.style.animation = 'fadeIn 2s ease-out forwards';
 
-    }, 800); // Shorter delay
+    }, 800);
 
 }, 3500);
 
 function showNextText(e) {
-    if (!tapEnabled) return; // Ничего не делаем, если тапы не разрешены
+    if (!tapEnabled) return;
 
     if (currentTextIndex < texts.length) {
-
-        // Hide previous text with blur animation
+       // Hide previous text
         if (currentTextIndex > 0) {
+            texts[currentTextIndex - 1].classList.remove('slide-in-left'); // Remove the existing class
             texts[currentTextIndex - 1].style.animation = 'blurFadeIn 0.7s forwards reverse';
+
             setTimeout(() => {
                 texts[currentTextIndex - 1].style.display = "none";
             }, 700);
-
         }
 
-        // Show new text
+        //Show new text
         texts[currentTextIndex].style.display = "block";
-        texts[currentTextIndex].style.animation = 'blurFadeIn 0.7s forwards';
+        texts[currentTextIndex].classList.add('slide-in-left'); // Add class for new animation
+        texts[currentTextIndex].style.animation = 'slideInLeft 0.8s ease-out, blurFadeIn 0.7s forwards';
 
-        createSparkle(e.clientX, e.clientY); // Add sparkle on tap (Use clientX and clientY)
 
-        tapEnabled = false; //Отключить тап.
+
+        createSparkle(e.clientX, e.clientY);
+
+        tapEnabled = false;
         setTimeout(() => {
-            tapEnabled = true; //Включить через 2 секунды.
+            tapEnabled = true;
         }, 2000);
 
         currentTextIndex++;
     }
 
-    // Show "Далее" button when all texts are displayed
     if (currentTextIndex === texts.length) {
         nextButton.style.display = "block";
-        document.body.removeEventListener('click', showNextText); //Удалить прослушиватель, чтобы больше текст не появлялся.
+		nextButton.classList.add('pulse'); // Add pulse animation to the button
+        document.body.removeEventListener('click', showNextText);
     }
 }
 
@@ -309,7 +341,7 @@ document.body.addEventListener("click", showNextText);
 
 // "Далее" button click event
 nextButton.addEventListener("click", function() {
-    window.location.href = "flower.html"; // Замените "flower.html" на нужное перенаправление
+    window.location.href = "flower.html";
 });
 
 function createSparkle(x, y) {
