@@ -27,9 +27,9 @@ body {
     padding: 15px;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.7);
-    word-break: break-word; /* This will prevent text from overflowing */
-    max-width: 90%; /* Limit the width to 90% of the viewport */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    word-break: break-word;
+    max-width: 90%;
+    box-sizing: border-box;
 }
 
 #textContainer {
@@ -42,19 +42,7 @@ body {
 #textContainer p {
     margin-bottom: 25px;
     display: none;
-    animation: fadeInUp 1s ease-out;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 #nextButton {
@@ -160,7 +148,6 @@ body {
     }
 }
 
-/* New animations */
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -192,6 +179,80 @@ body {
     animation: pulse 2s linear infinite;
 }
 
+/* More animations */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.zoom-in {
+    animation: zoomIn 0.7s ease-out;
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    20% {
+        transform: scale(1.1);
+    }
+    40% {
+        transform: scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+    80% {
+        transform: scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 1s ease-out;
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.8; }
+  5%   { opacity: 0.9; }
+  10%  { opacity: 0.7; }
+  15%  { opacity: 1.0; }
+  20%  { opacity: 0.9; }
+  25%  { opacity: 0.8; }
+  30%  { opacity: 0.7; }
+  35%  { opacity: 0.9; }
+  40%  { opacity: 1.0; }
+  45%  { opacity: 0.8; }
+  50%  { opacity: 0.9; }
+  55%  { opacity: 0.7; }
+  60%  { opacity: 1.0; }
+  65%  { opacity: 0.9; }
+  70%  { opacity: 0.8; }
+  75%  { opacity: 0.7; }
+  80%  { opacity: 0.9; }
+  85%  { opacity: 1.0; }
+  90%  { opacity: 0.8; }
+  95%   { opacity: 0.9; }
+  100% { opacity: 1.0; }
+}
+
+.flicker {
+    animation: flicker 3s linear infinite;
+}
 </style>
 </head>
 <body>
@@ -199,9 +260,9 @@ body {
 <div id="warning">прочитай все пожалуйста. чтобы появился новый текст просто тапни по экрану (раз в две секунды)</div>
 
 <div id="textContainer">
-    <p id="text1" class="rotate-text">сегодня этот день</p>
-    <p id="text2" class="color-change">думаю, один из самых любимых</p>
-    <p id="text3" >этот текст писал искренее от всего сердца</p>
+    <p id="text1" class="rotate-text zoom-in">сегодня этот день</p>
+    <p id="text2" class="color-change bounce-in">думаю, один из самых любимых</p>
+    <p id="text3" class="flicker">этот текст писал искренее от всего сердца</p>
     <p id="text4_1">время идет и идет.</p>
     <p id="text4_2">ты все взрослеешь и взрослеешь.</p>
     <p id="text4_3">в этот день тебе исполняется 15 лет,</p>
@@ -299,44 +360,49 @@ let warningTimer = setTimeout(() => {
 }, 3500);
 
 function showNextText(e) {
-    if (!tapEnabled) return;
+   if (!tapEnabled) return;
 
     if (currentTextIndex < texts.length) {
-       // Hide previous text
+        // Hide previous text after a click
         if (currentTextIndex > 0) {
-            texts[currentTextIndex - 1].classList.remove('slide-in-left'); // Remove the existing class
-            texts[currentTextIndex - 1].style.animation = 'blurFadeIn 0.7s forwards reverse';
-
-            setTimeout(() => {
-                texts[currentTextIndex - 1].style.display = "none";
-            }, 700);
+            texts[currentTextIndex - 1].style.display = "none"; // Just hide the previous text
         }
 
-        //Show new text
-        texts[currentTextIndex].style.display = "block";
-        texts[currentTextIndex].classList.add('slide-in-left'); // Add class for new animation
-        texts[currentTextIndex].style.animation = 'slideInLeft 0.8s ease-out, blurFadeIn 0.7s forwards';
 
+        // Show new text with animations
+        texts[currentTextIndex].style.display = "block";
+        texts[currentTextIndex].classList.add('slide-in-left'); // Initial animation
+        texts[currentTextIndex].classList.add('zoom-in');
+
+          // Randomly add more animations
+          const randomAnimations = ['zoom-in', 'bounce-in', 'flicker'];
+          const randomIndex = Math.floor(Math.random() * randomAnimations.length);
+          texts[currentTextIndex].classList.add(randomAnimations[randomIndex]);
 
 
         createSparkle(e.clientX, e.clientY);
 
-        tapEnabled = false;
+        tapEnabled = false; // Disable tap until timeout
         setTimeout(() => {
-            tapEnabled = true;
+            tapEnabled = true; // Re-enable tap after 2 seconds
         }, 2000);
 
-        currentTextIndex++;
+        currentTextIndex++; // Increment only after click
     }
 
     if (currentTextIndex === texts.length) {
         nextButton.style.display = "block";
-		nextButton.classList.add('pulse'); // Add pulse animation to the button
-        document.body.removeEventListener('click', showNextText);
+        nextButton.classList.add('pulse');
+        document.body.removeEventListener("click", showNextText); // Stop the event listener
     }
 }
 
-// Show first text on body tap
+// Initial setup: hide all texts
+texts.forEach(text => {
+    text.style.display = 'none';
+});
+
+// Event listener on body to show texts
 document.body.addEventListener("click", showNextText);
 
 // "Далее" button click event
