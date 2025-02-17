@@ -16,9 +16,8 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Arial', sans-serif; /* Modern font */
     text-align: center;
-    padding-top: 50px;
     animation: gradientBackground 60s infinite;
     background: linear-gradient(270deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
     background-size: 1600% 1600%;
@@ -26,37 +25,62 @@ body {
     margin: 0;
     min-height: 100vh;
     display: flex;
+    flex-direction: column; /* Stack elements vertically */
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
 }
 
-h1, button {
-    background-color: black;
+h1 {
+    font-size: 3em; /* Larger heading */
+    font-weight: bold; /* Bold heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+    margin-bottom: 30px; /* Spacing below heading */
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+    border-radius: 10px;
     position: relative;
     z-index: 2;
 }
 
 button {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #4CAF50;
+    padding: 20px 40px; /* Larger buttons */
+    font-size: 20px;
+    font-weight: bold;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
     position: relative;
     z-index: 2;
+    margin-top: 20px; /* Increased spacing */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
 }
 
-button:hover {
-    background-color: #3e8e41;
+#myButton {
+    background-color: #e91e63; /* Pink color */
+}
+
+#myButton:hover {
+    background-color: #c2185b; /* Darker pink on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+#nextButton {
+    background-color: #2196F3; /* Blue color */
+}
+
+#nextButton:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 audio {
-    margin-top: 20px;
+    margin-top: 30px;
     position: relative;
     z-index: 2;
 }
@@ -76,6 +100,7 @@ audio {
     font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
     animation: float 8s linear infinite;
+    will-change: transform, opacity; /* Performance optimization */
 }
 
 @keyframes float {
@@ -88,26 +113,6 @@ audio {
         opacity: 0;
     }
 }
-
-
-/* Style for the "ДАЛЕЕ" button */
-#nextButton {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #007BFF; /* Blue */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 2;
-    margin-top: 20px; /* Add some space */
-}
-
-#nextButton:hover {
-    background-color: #0056b3;
-}
 </style>
 </head>
 <body>
@@ -118,7 +123,7 @@ audio {
 
 <button id="myButton">тык*</button>
 
-<audio id="myAudio" src="14.mp3" preload="auto" loop></audio>  <!-- Added loop attribute -->
+<audio id="myAudio" src="14.mp3" preload="auto" loop controls></audio>
 
 <button id="nextButton">ДАЛЕЕ</button>
 
