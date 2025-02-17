@@ -10,16 +10,6 @@
 
   <!-- Document Title -->
   <title>FLOWERS</title>
-  <style>
-    body.blackout .night,
-    body.blackout .flowers {
-      display: none;
-    }
-
-    body.blackout {
-      background-color: black;
-    }
-  </style>
 </head>
 
 <body class="not-loaded">
@@ -331,10 +321,4 @@
 </html>
 
 <!-- Import Javascript -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      document.body.classList.add('blackout');
-    }, 6000); // 6000 milliseconds = 6 seconds
-  });
-</script>
+<script src="js/main.js"></script>
