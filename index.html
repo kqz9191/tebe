@@ -8,7 +8,12 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background: #000; /* Solid dark background */
+            /* Add star background */
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                              radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px, 60px 60px; /* Adjust sizes for star density */
+            animation: twinkle 10s linear infinite; /* Add twinkle animation */
             color: #fff;
             margin: 0;
             display: flex;
@@ -19,6 +24,13 @@
             overflow: hidden;
             position: relative; /* Add relative positioning for absolute hearts/numbers */
         }
+
+        @keyframes twinkle {
+            0% { background-position: 0 0, 0 0; }
+            50% { background-position: 20px 20px, 30px 30px; }
+            100% { background-position: 0 0, 0 0; }
+        }
+
 
         h1 {
             font-size: 3.5em;
@@ -41,7 +53,7 @@
         }
 
         .glow-on-hover {
-            width: 220px;
+           width: 220px;
             height: 60px;
             border: none;
             outline: none;
