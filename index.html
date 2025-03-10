@@ -154,7 +154,8 @@
             }
         }
 
-        #password-container {
+        /* Remove password styling and functionality */
+        /* #password-container {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -192,11 +193,11 @@
             width: 100%;
             height: 100%;
             /*  Changed to blur, removed opacity */
-            backdrop-filter: blur(10px);
+           /* backdrop-filter: blur(10px);
             background-color: rgba(0, 0, 0, 0.2); /*  Added a slight dark tint */
-            z-index: 9;
+           /* z-index: 9;
             display: none;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -211,27 +212,28 @@
 
 <audio id="myAudio" src="14.mp3" preload="auto" loop controls></audio>
 
-<div id="password-container">
+<!-- Remove password container and overlay -->
+<!-- <div id="password-container">
     <label for="password-input">введи пароль:</label>
     <input type="password" id="password-input">
     <button id="password-submit">войти</button>
 </div>
 
-<div id="overlay"></div>
+<div id="overlay"></div> -->
 
 <script>
     const button = document.getElementById("myButton");
     const audio = document.getElementById("myAudio");
-    const passwordContainer = document.getElementById("password-container");
-    const passwordInput = document.getElementById("password-input");
-    const passwordSubmit = document.getElementById("password-submit");
-    const overlay = document.getElementById("overlay");
+    //const passwordContainer = document.getElementById("password-container");
+    //const passwordInput = document.getElementById("password-input");
+    //const passwordSubmit = document.getElementById("password-submit");
+    //const overlay = document.getElementById("overlay");
 
     // **CHANGE THE PASSWORD HERE**
-    const correctPassword = "1";
+    //const correctPassword = "1";
 
     // Function to show the password prompt
-    function showPasswordPrompt() {
+   /* function showPasswordPrompt() {
         passwordContainer.style.display = "flex";
         overlay.style.display = "block";
     }
@@ -253,7 +255,7 @@
             alert("Неверный пароль!");
             passwordInput.value = "";
         }
-    });
+    }); */
 
     // Function to enable the next button after correct password
     function enableNextButton() {
@@ -274,6 +276,7 @@
 
     button.addEventListener("click", function() {
         audio.play();
+        enableNextButton(); // Go directly to the next page
     });
 
 
@@ -311,8 +314,11 @@
     setInterval(createFloatingHearts, 200);
     setInterval(createFloatingNumbers, 5000);
 
-    // Show the password prompt on page load
-    showPasswordPrompt();
+    // Directly enable the next button on page load
+   //enableNextButton();
+
+     // Disable auto show password prompt
+    //showPasswordPrompt();
 </script>
 
 </body>
